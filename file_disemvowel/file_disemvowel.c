@@ -38,7 +38,7 @@ int copy_non_vowels(int num_chars, char* in_buf, char* out_buf) {
       ++a;
     }
   }
-  fwrite(out_buf, 1, a, stdout);
+  //fwrite(out_buf, 1, a, stdout);
   return totalNonVowels;
 }
 
@@ -54,22 +54,6 @@ void disemvowel(FILE* inputFile, FILE* outputFile) {
   fread(bufferIn, BUF_SIZE, 1, inputFile);
   int newLength = copy_non_vowels(strlen(bufferIn), bufferIn, bufferOut);
   fwrite(bufferOut, 1, newLength, outputFile);
-
-  //int i = 0;
-  //
-  //while (bufferIn[i] > 0) {
-  //  printf("%c", bufferIn[i]);
-  //  ++i;
-  //}
-  //printf("\n");
-  //
-  //printf("\ntotal vowels: %d\n", copy_non_vowels(strlen(bufferIn), bufferIn, bufferOut));
-  //i = 0;
-  //while (bufferOut[i] > 0) {
-  //  printf("%c", bufferOut[i]);
-  //  ++i;
-  //}
-  //printf("\n");
 }
 
 int main(int argc, char *argv[]) {
@@ -86,12 +70,6 @@ int main(int argc, char *argv[]) {
     outputFile = fopen( argv[2], "w");
     disemvowel(inputFile, outputFile);
   }
-
-  //char *content = malloc(sizeof(char) * BUF_SIZE);
-
-
-
-  //disemvowel(inputFile, outputFile);
 
   return 0;
 }
