@@ -31,14 +31,14 @@ int copy_non_vowels(int num_chars, char* in_buf, char* out_buf) {
     charTypes[i] = result;
   }
   
-  for (i = 0, a = 0; i < num_chars; ++i) {
-    if (charTypes[i] == 0) {
+  for (i = 0, a = 0; i < num_chars-1; ++i) {
+    if (charTypes[i] == 0 && in_buf[i] > 0) {
       out_buf[a] = in_buf[i];
       //printf("setting out_buf[%d] to '%c' \n", a, in_buf[i]);
       ++a;
     }
   }
-  
+  fwrite(out_buf, 1, a, stdout);
   return totalNonVowels;
 }
 
@@ -52,7 +52,8 @@ void disemvowel(FILE* inputFile, FILE* outputFile) {
   char bufferIn[BUF_SIZE];
   char bufferOut[BUF_SIZE];
   fread(bufferIn, BUF_SIZE, 1, inputFile);
-  int nonVowels = copy_non_vowels(strlen(bufferIn), bufferIn, bufferOut);
+  int newLength = copy_non_vowels(strlen(bufferIn), bufferIn, bufferOut);
+  fwrite(bufferOut, 1, newLength, outputFile);
 
   //int i = 0;
   //
@@ -82,7 +83,7 @@ int main(int argc, char *argv[]) {
   }
   else if (argc == 3) {
     inputFile = fopen( argv[1], "r");
-    outputFile = fopen( argv[2], "r");
+    outputFile = fopen( argv[2], "w");
     disemvowel(inputFile, outputFile);
   }
 
