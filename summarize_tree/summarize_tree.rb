@@ -15,7 +15,7 @@ fileCount = Dir["#{ARGV[0]}/**/*"].length
 
 
 
-puts "Processed all the files from #{dir}"
+puts "Processed all the files from <#{dir}>"
 puts "There were #{directCount} directories."
 puts "There were #{fileCount} regular files."
 
