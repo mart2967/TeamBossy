@@ -1,0 +1,11 @@
+#include <stdio.h>
+#include <sys/stat.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <dirent.h>
+#include <unistd.h>
+#include <string.h>
+
+int filecount = 0;
+int dircount = 0;
+
