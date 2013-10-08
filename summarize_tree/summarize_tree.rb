@@ -11,7 +11,12 @@ Find.find(dir) do |path|
     directCount += 1
   end
 end
-fileCount = Dir["#{ARGV[0]}/**/*"].length
+fileCount = 0
+Find.find(dir) do |path|
+  if FileTest.file?(path)
+    fileCount += 1
+  end
+end
 
 
 
