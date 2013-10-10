@@ -5,7 +5,7 @@ outputFile=`mktemp /tmp/summarize_tree_output.XXXXX`
 testCVersionUsingStatOnSmallDirectory()
 {
     rm $outputFile
-    ./summarize_tree ~mcphee/pub/CSci3401/fewer_files/ > $outputFile
+    ./summarize_tree /home/mcphee/pub/CSci3401/fewer_files/ > $outputFile
     diff small_dir_sizes $outputFile
     assertTrue "Incorrect output file, try 'diff small_dir_sizes $outputFile' for more info" "[[ $? == 0 ]]"
 }
@@ -13,7 +13,7 @@ testCVersionUsingStatOnSmallDirectory()
 testCVersionUsingStatOnLargeDirectory()
 {
     rm $outputFile
-    ./summarize_tree ~mcphee/pub/CSci3401/loads_o_files/ > $outputFile
+    ./summarize_tree /home/mcphee/pub/CSci3401/loads_o_files/ > $outputFile
     diff large_dir_sizes $outputFile
     assertTrue "Incorrect output file, try 'diff large_dir_sizes $outputFile' for more info" "[[ $? == 0 ]]"
 }
@@ -21,7 +21,7 @@ testCVersionUsingStatOnLargeDirectory()
 testCVersionUsingFtwOnSmallDirectory()
 {
     rm $outputFile
-    ./summarize_tree_ftw ~mcphee/pub/CSci3401/fewer_files/ > $outputFile
+    ./summarize_tree_ftw /home/mcphee/pub/CSci3401/fewer_files/ > $outputFile
     diff small_dir_sizes $outputFile
     assertTrue "Incorrect output file, try 'diff small_dir_sizes $outputFile' for more info" "[[ $? == 0 ]]"
 }
@@ -29,7 +29,7 @@ testCVersionUsingFtwOnSmallDirectory()
 testCVersionUsingFtwOnLargeDirectory()
 {
     rm $outputFile
-    ./summarize_tree_ftw ~mcphee/pub/CSci3401/loads_o_files/ > $outputFile
+    ./summarize_tree_ftw /home/mcphee/pub/CSci3401/loads_o_files/ > $outputFile
     diff large_dir_sizes $outputFile
     assertTrue "Incorrect output file, try 'diff large_dir_sizes $outputFile' for more info" "[[ $? == 0 ]]"
 }
@@ -37,7 +37,7 @@ testCVersionUsingFtwOnLargeDirectory()
 testBashVersionOnSmallDirectory()
 {
     rm $outputFile
-    ./summarize_tree.sh ~mcphee/pub/CSci3401/fewer_files/ > $outputFile
+    ./summarize_tree.sh /home/mcphee/pub/CSci3401/fewer_files/ > $outputFile
     diff small_dir_sizes $outputFile
     assertTrue "Incorrect output file, try 'diff small_dir_sizes $outputFile' for more info" "[[ $? == 0 ]]"
 }
@@ -45,7 +45,7 @@ testBashVersionOnSmallDirectory()
 testBashVersionOnLargeDirectory()
 {
     rm $outputFile
-    ./summarize_tree.sh ~mcphee/pub/CSci3401/loads_o_files/ > $outputFile
+    ./summarize_tree.sh /home/mcphee/pub/CSci3401/loads_o_files/ > $outputFile
     diff large_dir_sizes $outputFile
     assertTrue "Incorrect output file, try 'diff large_dir_sizes $outputFile' for more info" "[[ $? == 0 ]]"
 }
@@ -53,7 +53,7 @@ testBashVersionOnLargeDirectory()
 testRubyVersionOnSmallDirectory()
 {
     rm $outputFile
-    ./summarize_tree.rb ~mcphee/pub/CSci3401/fewer_files/ > $outputFile
+    ./summarize_tree.rb /home/mcphee/pub/CSci3401/fewer_files/ > $outputFile
     diff small_dir_sizes $outputFile
     assertTrue "Incorrect output file, try 'diff small_dir_sizes $outputFile' for more info" "[[ $? == 0 ]]"
 }
@@ -61,10 +61,10 @@ testRubyVersionOnSmallDirectory()
 testRubyVersionOnLargeDirectory()
 {
     rm $outputFile
-    ./summarize_tree.rb ~mcphee/pub/CSci3401/loads_o_files/ > $outputFile
+    ./summarize_tree.rb /home/mcphee/pub/CSci3401/loads_o_files/ > $outputFile
     diff large_dir_sizes $outputFile
     assertTrue "Incorrect output file, try 'diff large_dir_sizes $outputFile' for more info" "[[ $? == 0 ]]"
 }
 
 # load shunit2
-. ~mcphee/pub/CSci3401/shunit2-2.1.5/src/shell/shunit2
+. /home/mcphee/pub/CSci3401/shunit2-2.1.5/src/shell/shunit2

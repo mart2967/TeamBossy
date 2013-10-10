@@ -16,6 +16,19 @@ bool is_dir(const char* path) {
    * return value from stat in case there is a problem, e.g., maybe the
    * the file doesn't actually exist.
    */
+
+  struct stat s;
+  if( stat(path,&s) == 0 )
+  {
+    if( s.st_mode & S_IFDIR )
+    {
+      //printf("%s is dir\n", path);
+      return true;
+    } else if (s.st_mode & S_IFREG) {
+      //printf("%s is not dir\n", path);
+      return false;
+    }
+  } 
 }
 
 /* 
@@ -25,29 +38,35 @@ bool is_dir(const char* path) {
 void process_path(const char*);
 
 void process_directory(const char* path) {
-  /*
-   * Update the number of directories seen, use opendir() to open the
-   * directory, and then use readdir() to loop through the entries
-   * and process them. You have to be careful not to process the
-   * "." and ".." directory entries, or you'll end up spinning in
-   * (infinite) loops. Also make sure you closedir() when you're done.
-   *
-   * You'll also want to use chdir() to move into this new directory,
-   * with a matching call to chdir() to move back out of it when you're
-   * done.
-   */
+  struct dirent* entry;
+  
+  chdir(path);
+  DIR *dir = opendir(".");
+  num_dirs += 1;
+  while((entry = readdir(dir)) != NULL) {
+    if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) {
+      continue;
+    }
+    
+    process_path(entry->d_name);
+  }
+  closedir(dir);
+  chdir("..");
 }
 
 void process_file(const char* path) {
   /*
    * Update the number of regular files.
    */
+  num_regular += 1;
 }
 
 void process_path(const char* path) {
   if (is_dir(path)) {
+    //printf("Processing %s: ", path);
     process_directory(path);
   } else {
+    //printf("Processing %s: ", path);
     process_file(path);
   }
 }
@@ -62,7 +81,7 @@ int main (int argc, char *argv[]) {
 
   num_dirs = 0;
   num_regular = 0;
-
+  //printf("%s", argv[1]);
   process_path(argv[1]);
 
   printf("Processed all the files from <%s>.\n", argv[1]);
